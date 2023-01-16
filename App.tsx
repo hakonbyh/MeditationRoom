@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import {  LoginScreen, RegisterScreen } from './src/views';
 import BookScreen from './src/views/BookScreen';
 import StartScreen from './src/views/StartScreen';
 import Survey from './src/views/Survey';

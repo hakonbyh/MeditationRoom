@@ -1,20 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import { Button } from 'react-native-paper';
-import moment from 'moment';
+
 
 const AvailableTimeSlots = () => {
-  const currentDate = moment().format('YYYY-MM-DD')
-  const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-
-  const maxDate = moment().add(2, 'weeks').format('YYYY-MM-DD');
-  
-  useEffect(() => {
-    onDayPress({ dateString: selectedDate });
-  }, []);
 
   const onDayPress = (day) => {
     setSelectedDate(day.dateString);
@@ -28,19 +20,12 @@ const AvailableTimeSlots = () => {
     setSelectedTimeSlot(timeSlot);
   }
 
-  const onBookNowPress = () => {
-    // Code to handle the booking
-    console.log('Booking', selectedTimeSlot);
-  }
-
   return (
     <SafeAreaView>
     <View style={styles.container}>
       <Calendar 
         onDayPress={onDayPress}
         markedDates={{ [selectedDate]: { selected: true } }}
-        minDate={currentDate}
-        maxDate={maxDate}
       />
       <View style={styles.timeSlotsContainer}>
         {availableTimeSlots.map((timeSlot) => (
@@ -53,13 +38,6 @@ const AvailableTimeSlots = () => {
           </TouchableOpacity>
         ))}
       </View>
-      <Button
-        mode="contained"
-        disabled={!selectedTimeSlot}
-        onPress={onBookNowPress}
-      >
-        Book Now
-      </Button>
     </View>
     </SafeAreaView>
   );
