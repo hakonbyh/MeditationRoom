@@ -20,7 +20,6 @@ export default function ResetPasswordScreen({ navigation }) {
 
   return (
     <Background>
-      <Logo />
       <Header>Restore Password</Header>
       <TextInput
         label="E-mail address"

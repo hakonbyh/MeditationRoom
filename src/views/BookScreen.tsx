@@ -4,7 +4,7 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { Button } from 'react-native-paper';
 import moment from 'moment';
 
-const AvailableTimeSlots = () => {
+const BookScreen = ( navigation ) => {
   const currentDate = moment().format('YYYY-MM-DD')
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
@@ -31,6 +31,7 @@ const AvailableTimeSlots = () => {
   const onBookNowPress = () => {
     // Code to handle the booking
     console.log('Booking', selectedTimeSlot);
+    navigation.navigate("Home")
   }
 
   return (
@@ -54,6 +55,7 @@ const AvailableTimeSlots = () => {
         ))}
       </View>
       <Button
+        style={{alignSelf: 'center'}}
         mode="contained"
         disabled={!selectedTimeSlot}
         onPress={onBookNowPress}
@@ -66,12 +68,10 @@ const AvailableTimeSlots = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   timeSlotsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    paddingVertical: 30,
   },
   timeSlot: {
     backgroundColor: '#eee',
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AvailableTimeSlots;
+export default BookScreen;
