@@ -8,8 +8,8 @@ const Tab = createBottomTabNavigator();
 
 const AppNavigation = () => {
   return (
-    <Tab.Navigator initialRouteName='Start'>
-        <Tab.Screen name="Start" component={HomeStack} options={{
+    <Tab.Navigator initialRouteName='HomeStack'>
+        <Tab.Screen name="HomeStack" component={HomeStack} options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
