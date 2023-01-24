@@ -1,15 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { Button } from 'react-native-paper';
 import moment from 'moment';
 import { theme } from '../core/theme'
+
 
 export default function BookScreen ({ navigation }) {
   const currentDate = moment().format('YYYY-MM-DD')
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const maxDate = moment().add(2, 'weeks').format('YYYY-MM-DD');
   
@@ -32,8 +34,16 @@ export default function BookScreen ({ navigation }) {
   const onBookNowPress = () => {
     // Code to handle the booking
     console.log('Booking', selectedTimeSlot);
-    navigation.navigate("Main")
+    Alert.alert(
+      'Booking Confirmed',
+      'Your booking has been confirmed at '+selectedTimeSlot+'!',
+      [{
+        text: 'OK',
+        onPress: () => navigation.navigate("Home")
+      }]);
   }
+
+  
 
   return (
     <SafeAreaView>
