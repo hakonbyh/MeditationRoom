@@ -13,10 +13,6 @@ const Survey = () => {
   return (
     <View style={styles.background}>
         <SafeAreaProvider>
-        <Appbar.Header style={{backgroundColor:'#1D3F53'}}>
-            <Appbar.BackAction onPress={() => {}} color='white'/>
-            <Appbar.Content title="Generate new session" color='white' />
-        </Appbar.Header>
         <View style={styles.container2}>
         <View style={styles.questionContainer}>
           <Text style={styles.question}>How do you feel?</Text>
@@ -59,6 +55,18 @@ const Survey = () => {
             Fear
           </Button>
         </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+            theme={theme}
+            color="primary"
+            mode="contained"
+            disabled={!selectedOption}
+            onPress={() => console.log('Generate music')}
+            style={styles.option}
+          >
+            Generate music
+          </Button>
+        </View>
         </View>
         </SafeAreaProvider>
     </View>
@@ -98,11 +106,9 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    left: 0,
-    right: 0,
     bottom: 0,
     justifyContent: 'space-between',
-    padding: 8,
+    marginVertical: 30,
   },
   container2: {
     flex: 1,

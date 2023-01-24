@@ -22,7 +22,7 @@ export default function ResetPasswordScreen({ navigation }) {
     <Background>
       <Header>Restore Password</Header>
       <TextInput
-        label="E-mail address"
+        label="Email"
         returnKeyType="done"
         value={email.value}
         onChangeText={(text) => setEmail({ value: text, error: '' })}

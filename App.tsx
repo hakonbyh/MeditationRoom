@@ -1,22 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { LoginScreen, RegisterScreen, ResetPasswordScreen } from './src/views';
-import BookScreen from './src/views/BookScreen';
-import StartScreen from './src/views/StartScreen';
-import Survey from './src/views/Survey';
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useState, useEffect } from 'react';
+import AuthStack from "./src/navigation/AuthStack";
+import AppNavigation from "./src/navigation/AppNavigation";
 
-const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    // Check the user's authentication status here, and update the isSignedIn state accordingly
+    // ...
+    setIsSignedIn(true);
+  }, []);
+
+
   return (
-      <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Reset" component={ResetPasswordScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={StartScreen} />
-      </Stack.Navigator>
+    <NavigationContainer>
+    {isSignedIn ? (
+      // No token found, user isn't signed in
+      <AuthStack/>
+    ) : (
+      // User is signed in
+      <AppNavigation />
+    )}
+
     </NavigationContainer>
   );
 }

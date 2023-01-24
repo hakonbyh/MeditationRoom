@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-na
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { Button } from 'react-native-paper';
 import moment from 'moment';
+import { theme } from '../core/theme'
 
-const BookScreen = ( navigation ) => {
+export default function BookScreen ({ navigation }) {
   const currentDate = moment().format('YYYY-MM-DD')
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
@@ -31,12 +32,12 @@ const BookScreen = ( navigation ) => {
   const onBookNowPress = () => {
     // Code to handle the booking
     console.log('Booking', selectedTimeSlot);
-    navigation.navigate("Home")
+    navigation.navigate("Main")
   }
 
   return (
     <SafeAreaView>
-    <View style={styles.container}>
+    <View>
       <Calendar 
         onDayPress={onDayPress}
         markedDates={{ [selectedDate]: { selected: true } }}
@@ -55,7 +56,8 @@ const BookScreen = ( navigation ) => {
         ))}
       </View>
       <Button
-        style={{alignSelf: 'center'}}
+        style={{alignSelf: 'center', backgroundColor: theme.colors.primary}}
+        labelStyle={{ color: "white"}}
         mode="contained"
         disabled={!selectedTimeSlot}
         onPress={onBookNowPress}
@@ -83,5 +85,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#00b894'
   },
 });
-
-export default BookScreen;
