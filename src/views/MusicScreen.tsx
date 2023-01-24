@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Text, Button, Appbar } from 'react-native-paper';
-import Background from '../components/Background';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { theme } from '../core/theme';
 
