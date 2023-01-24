@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError })
       return
     }
-    navigation.navigate('App')
+    navigation.navigate('AppNavigation')
   }
 
   return (

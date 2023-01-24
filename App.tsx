@@ -1,7 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { useState, useEffect } from 'react';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthStack from "./src/navigation/AuthStack";
 import AppNavigation from "./src/navigation/AppNavigation";
+import HomeStack from "./src/navigation/HomeStack";
 
 
 export default function App() {
@@ -14,17 +16,14 @@ export default function App() {
     setIsSignedIn(true);
   }, []);
 
-
+  const AppStack = createNativeStackNavigator();
+  
   return (
     <NavigationContainer>
-    {isSignedIn ? (
-      // No token found, user isn't signed in
-      <AuthStack/>
-    ) : (
-      // User is signed in
-      <AppNavigation />
-    )}
-
+      <AppStack.Navigator screenOptions={{headerShown: false}}>
+        <AppStack.Screen name="AuthStack" component={AuthStack} />
+        <AppStack.Screen name="AppNavigation" component={AppNavigation} />
+    </AppStack.Navigator>
     </NavigationContainer>
   );
 }

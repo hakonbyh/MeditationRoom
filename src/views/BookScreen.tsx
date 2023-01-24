@@ -51,7 +51,7 @@ export default function BookScreen ({ navigation }) {
             style={[styles.timeSlot, selectedTimeSlot === timeSlot && styles.selectedTimeSlot]}
             onPress={() => onTimeSlotPress(timeSlot)}
           >
-            <Text>{timeSlot}</Text>
+            <Text style={selectedTimeSlot === timeSlot && styles.selectedTimeSlot}>{timeSlot}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   selectedTimeSlot: {
-    backgroundColor: '#00b894'
+    backgroundColor: theme.colors.primary,
+    color: "white"
   },
 });
