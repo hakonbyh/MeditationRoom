@@ -7,7 +7,7 @@ import MeditationScreen from '../views/MeditationScreen';
 import MusicScreen from '../views/MusicScreen';
 import ScentScreen from '../views/ScentScreen';
 import HomeScreen from '../views/HomeScreen';
-import UploadScreen from '../views/uploadScreen';
+import UploadScreen from '../views/UploadScreen';
 
 
 const Stack = createNativeStackNavigator();

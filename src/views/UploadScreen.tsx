@@ -1,49 +1,45 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-import { Audio } from 'expo-av';
-import { Appbar, TextInput } from 'react-native-paper';
+import * as Location from 'expo-location';
+import * as DocumentPicker from 'expo-document-picker';
+import { Button, shadow } from 'react-native-paper';
+import { theme } from '../core/theme'
 
 const UploadScreen = () => {
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);
 
   const selectImage = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    let { status } = await Location.requestForegroundPermissionsAsync();
     if (status === 'granted') {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: true,
       });
-      if (!result.cancelled) {
-        setImage(result.uri);
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
       }
     }
   };
 
   const selectAudio = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    let { status } = await Location.requestForegroundPermissionsAsync();
     if (status === 'granted') {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Audio
+      const result = await DocumentPicker.getDocumentAsync({
+        type: 'audio/*',
       });
-      if (!result.cancelled) {
-        setAudio(result.uri);
-      }
     }
   };
 
   return (
     <View style={styles.container}>
-      <Appbar>
-        <Appbar.Content title="Upload" />
-      </Appbar>
       <View style={styles.uploadContainer}>
-        <Button title="Select Image" onPress={selectImage} />
+      <Button mode="contained" onPress={selectImage} style={styles.button}>Select Image</Button>
         {image && <Image source={{ uri: image }} style={styles.image} />}
       </View>
       <View style={styles.uploadContainer}>
-        <Button title="Select Audio" onPress={selectAudio} />
+      <Button mode="contained" onPress={selectAudio} style={styles.button}>Select Audio</Button>
         {audio && <Text>{audio}</Text>}
       </View>
     </View>
@@ -65,7 +61,16 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     marginTop: 20
-  }
+  },
+  button: {
+    margin:10,
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    borderRadius: 10,
+    backgroundColor: theme.colors.primary
+  },
 });
 
 export default UploadScreen;
