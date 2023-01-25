@@ -9,20 +9,24 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import { confirmPasswordValidator } from '../helpers/confirmPasswordValidator'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+  const [confirmPassword, setConfirmPassword] = useState({ value: '', error: '' })
 
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value)
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError || nameError) {
+    const confirmpasswordError = confirmPasswordValidator(password.value, confirmPassword.value)
+    if (emailError || passwordError || nameError || confirmpasswordError) {
       setName({ ...name, error: nameError })
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
+      setConfirmPassword({ ...confirmPassword, error: confirmpasswordError })
       return
     }
     navigation.reset({
@@ -64,14 +68,14 @@ export default function RegisterScreen({ navigation }) {
         secureTextEntry
       />
       <TextInput
-        label="Password"
+        label="Confirm Password"
         returnKeyType="done"
-        value={password.value}
-        onChangeText={(text) => setPassword({ value: text, error: '' })}
-        error={!!password.error}
-        errorText={password.error}
+        value={confirmPassword.value}
+        onChangeText={(text) => setConfirmPassword({ value: text, error: '' })}
+        error={!!confirmPassword.error}
+        errorText={confirmPassword.error}
         secureTextEntry
-      />
+        />
       <Button
         theme={theme}
         color="primary"

@@ -11,8 +11,8 @@ export default function HomeScreen({navigation}) {
         <TouchableOpacity onPress={() => navigation.navigate("Music")}>
         <CardComponent title="Music" description="Generate your own mood-based music" icon="music" style={{margin: 5}}/>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Scents")}>
-        <CardComponent title="Scent to places" description="Experience the different scents" icon="scent" style={{margin: 5}}/>
+        <TouchableOpacity onPress={() => navigation.navigate("Themes")}>
+        <CardComponent title="Reality wall" description="Experience the different scents" icon="scent" style={{margin: 5}}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Activities")}>
         <CardComponent title="Activites" description="Choose from a variety of activities" icon="run" style={{margin: 5}}/>
@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 16,
+      
     },
   });
