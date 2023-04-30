@@ -8,6 +8,7 @@ import MusicScreen from '../views/MusicScreen';
 import ScentScreen from '../views/ScentScreen';
 import HomeScreen from '../views/HomeScreen';
 import UploadScreen from '../views/UploadScreen';
+import FeedBackScreen from '../views/FeedbackScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ const HomeStack = () => {
         <Stack.Screen name="Meditation" component={MeditationScreen} />
         <Stack.Screen name="Activities" component={ActivitiesScreen} />
         <Stack.Screen name="Custom" component={UploadScreen} />
+        <Stack.Screen name="Feedback" component={FeedBackScreen} />
     </Stack.Navigator>
   )
 }

@@ -29,10 +29,6 @@ export default function RegisterScreen({ navigation }) {
       setConfirmPassword({ ...confirmPassword, error: confirmpasswordError })
       return
     }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }],
-    })
   }
 
   return (

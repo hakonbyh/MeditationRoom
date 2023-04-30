@@ -17,6 +17,9 @@ export default function HomeScreen({navigation}) {
         <TouchableOpacity onPress={() => navigation.navigate("Activities")}>
         <CardComponent title="Activites" description="Choose from a variety of activities" icon="run" style={{margin: 5}}/>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Feedback")}>
+        <CardComponent title="Feedback" description="Let us know how you feel" icon="information" style={{margin: 5}}/>
+        </TouchableOpacity>
       </View>
   )
 }
